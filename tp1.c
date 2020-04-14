@@ -17,17 +17,19 @@ int resta (int* numero1, int* numero2)
 
 int division (int* numero1, int* numero2)
 {
-    if (* numero2 == 0)
+	int resultadoDivision;
+	int retorno;
+	retorno = -1;
+	if (* numero2 == 0)
     {
     printf ("\nNo se puede dividir por cero. Vuelva a la opcion 2 y reingrese otro numero.\n");
+    retorno = 0;
     }
     else
     {
-    int resultadoDivision;
     resultadoDivision = (*numero1) / (*numero2);
-    return resultadoDivision;
     }
-    return 1;
+    return retorno;
 }
 
 int multiplicar (int* numero1, int* numero2)
