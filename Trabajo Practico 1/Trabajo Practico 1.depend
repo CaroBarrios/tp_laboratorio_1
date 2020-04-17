@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1587092849 source:c:\users\german.segovia\desktop\trabajo caro\trabajo practico 1\utn.c
+	<stdio.h>
+	<stdlib.h>
+
+1587091317 source:c:\users\german.segovia\desktop\trabajo caro\trabajo practico 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1587091454 c:\users\german.segovia\desktop\trabajo caro\trabajo practico 1\utn.h
+
+1587091317 source:c:\users\german.segovia\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1587091454 c:\users\german.segovia\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 1\utn.h
+
+1587092849 source:c:\users\german.segovia\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 1\utn.c
+	<stdio.h>
+	<stdlib.h>
+
