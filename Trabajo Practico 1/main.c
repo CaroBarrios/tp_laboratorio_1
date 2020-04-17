@@ -27,11 +27,13 @@ int main(void) {
 				printf("\nIngrese un numero: ");
 				fflush (stdin);
 				scanf("%d",&numero1);
+				system ("cls");
 				break;
 			case 2:
 				printf("\nIngrese un numero: ");
 				fflush(stdin);
 				scanf("%d",&numero2);
+				system ("cls");
 				break;
 			case 3:
 				printf ("\n\nSe calcularan las siguientes operaciones:\n\n");
@@ -46,6 +48,8 @@ int main(void) {
 				printf ("e) El factorial de %d y el factorial de %d\n\n", numero1, numero2);
 				retornoFactorialUno = factorialUno (numero1);
 				retornoFactorialDos = factorialDos (numero2);
+				system ("pause");
+				system ("cls");
 				break;
 			case 4:
 				printf ("\nEl resultado de %d + %d es: %d\n", numero1, numero2, retornoSuma);
@@ -59,8 +63,9 @@ int main(void) {
 							printf ("El resultado de %d / %d es: %.2f\n", numero1, numero2, resultadoDivision);
 						}
 				printf ("El resultado de %d * %d es: %d\n", numero1, numero2, retornoMultiplicacion);
-				printf ("El factorial de %d es: %d\n\n", numero1, retornoFactorialUno);
-				printf ("El factorial de %d es: %d\n\n", numero2, retornoFactorialDos);
+				printf ("El factorial de %d es: %d y el factorial de %d es: %d\n\n", numero1, retornoFactorialUno, numero2, retornoFactorialDos);
+				system ("pause");
+				system ("cls");
 				break;
 			}
 		}
