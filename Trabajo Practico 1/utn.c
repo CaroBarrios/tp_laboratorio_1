@@ -34,6 +34,8 @@ int utn_getNumero (int* pResultado, char* mensaje, char* mensajeError, int minim
 			{
 				printf ("%s", mensajeError);
 				reintentos--;
+                system ("pause");
+				system ("cls");
 			}
         }while (reintentos>=0);
 	}
