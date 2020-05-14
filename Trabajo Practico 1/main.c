@@ -15,6 +15,7 @@ int main(void) {
 	int retornoMultiplicacion;
 	int retornoFactorialUno;
 	int retornoFactorialDos;
+	int flag1=0;
 
 	do
 	{
@@ -24,10 +25,17 @@ int main(void) {
 			switch (opcion)
 			{
 			case 1:
-				printf("\nIngrese un numero: ");
-				fflush (stdin);
-				scanf("%d",&numero1);
-				system ("cls");
+			    if (flag1 ==0)
+                {
+                printf("\nIngrese un numero: ");
+                fflush (stdin);
+                scanf("%d",&numero1);
+                system ("cls");
+                }
+                else
+                {
+                    flag1==1;
+                }
 				break;
 			case 2:
 				printf("\nIngrese un numero: ");
@@ -36,7 +44,13 @@ int main(void) {
 				system ("cls");
 				break;
 			case 3:
-				printf ("\n\nSe calcularan las siguientes operaciones:\n\n");
+				if (flag1 == 0)
+                {
+                    printf ("Vuelva a la opcion 1, falta ingresar el primer numero");
+                }
+                else
+                {
+                printf ("\n\nSe calcularan las siguientes operaciones:\n\n");
 				printf ("a) La suma de %d con el %d\n", numero1, numero2);
 				retornoSuma = suma(numero1, numero2);
 				printf ("b) La resta de %d con %d\n", numero1, numero2);
@@ -50,6 +64,7 @@ int main(void) {
 				retornoFactorialDos = factorialDos (numero2);
 				system ("pause");
 				system ("cls");
+                }
 				break;
 			case 4:
 				printf ("\nEl resultado de %d + %d es: %d\n", numero1, numero2, retornoSuma);
