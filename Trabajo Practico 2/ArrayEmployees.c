@@ -104,7 +104,7 @@ int Employee_print(Employee* pElement)
 	{
 		answer = 0;
 
-		printf ("%d    %s      %s           %.2f      %d\n\n", pElement->id, pElement->name, pElement->lastName, pElement->salary, pElement->sector);
+		printf ("%d     %s        %s         %.2f       %d\n\n", pElement->id, pElement->name, pElement->lastName, pElement->salary, pElement->sector);
 	}
 	return answer;
 }
@@ -121,7 +121,7 @@ int printEmployees(Employee* list, int length)
 	if(list != NULL && length > 0)
 	{
 		answer = 0;
-		printf ("\n******Empleados******\n\n");
+		printf ("\n******Employee******\n\n");
         printf ("ID    Name          Last Name        Salary     Sector\n\n");
 		for(int i=0;i<length;i++)
 		{
@@ -164,42 +164,98 @@ int findEmployeeById(Employee* list, int len, int id)
 }
 
 /**
-* \brief add in a existing list of employees the values received as parameters in the first empty position
+* \brief Display menu for the user can choose what data want to modify
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
 * \param id Position to be modify
-* \param index Position to be updated
-* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+* \return int Return (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect] - (0) if Ok
+*
 */
-int modifyEmployee(Employee* list, int len, int index)
+int menuModifyEmployee (Employee* list, int len, int index)
 {
-    int answer = -1;
+	int answer = -1;
+	int optionMenu;
 	Employee bufferEmployee;
 
-	if(list != NULL && len > 0 && index < len && index >= 0)
+    if(list != NULL && len > 0 && index < len && index >= 0)
 	{
-		if(	utn_getString(bufferEmployee.name,NAME_LEN,"\nEnter the Employee's name: ",
-                                                       "\nERROR, the entered data is not a name. You can only enter names without numbers or special characters.\n",2) == 0 &&
-			utn_getString(bufferEmployee.lastName,LASTNAME_LEN,"\nEnter the Employee's last name: ",
-                                                               "\nERROR, the entered data is not a last name. You can only enter last names without numbers or special characters.\n",2) == 0 &&
-			utn_getNumeroFlotante(&bufferEmployee.salary,"\nEnter the Employee's salary: ",
-                                                         "\nERROR, the data entered is not a salary. You can only enter wages without letters or special characters.\n",0, 1000000, 2) == 0 &&
-            utn_getNumero(&bufferEmployee.sector,"\n*****Sectors*****"
-                                                 "\n1 - Human Resources"
-                                                 "\n2 - Marketing Department"
-                                                 "\n3 - Systems Department"
-                                                 "\n4 - Accounting Department"
-                                                 "\n5 - Collection Department\n"
-                                                 "\nEnter the number of the sector to which the employee belongs: ",
-                                                 "\nERROR, the data entered is not a sector. You can only enter sectors from 1 to 5 without letters or special characters.\n",0,5,2) == 0)
+		do
 		{
-			answer = 0;
-			bufferEmployee.id = list[index].id; // en buffer le dejo el id
-			bufferEmployee.isEmpty = 0;
-			list[index] = bufferEmployee;
-		}
+			if ((utn_getNumero (&optionMenu,"\nWhat do you want to modify?\n\n"
+											"1. Name.\n"
+											"2. Last Name.\n"
+											"3. Salary\n"
+											"4. Sector\n"
+											"5. Return\n\n"
+											"Enter an option: ",
+											"It is not a valid option. Try again.\n\n", 1, 5, 3))==0)
+			{
+
+				switch(optionMenu)
+				{
+					case 1:
+						if (utn_getString(bufferEmployee.name,NAME_LEN,"\nEnter the Employee's name: ",
+																		"\nERROR, the entered data is not a name. You can only enter names without numbers or special characters.\n",2)==0)
+						{
+							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.isEmpty = 0;
+							strncpy(list[index].name, bufferEmployee.name, NAME_LEN);
+							printf("\nThe name was successfully modified\n\n");
+						}
+						answer = 0;
+						system ("pause");
+						system ("cls");
+						break;
+					case 2:
+						if (utn_getString(bufferEmployee.lastName,LASTNAME_LEN,"\nEnter the Employee's last name: ",
+															   "\nERROR, the entered data is not a last name. You can only enter last names without numbers or special characters.\n",2)== 0)
+						{
+							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.isEmpty = 0;
+							strncpy(list[index].lastName, bufferEmployee.lastName, LASTNAME_LEN);
+							printf("\nThe last name was successfully modified\n\n");
+						}
+						answer = 0;
+						system ("pause");
+						system ("cls");
+						break;
+					case 3:
+						if (utn_getNumeroFlotante(&bufferEmployee.salary,"\nEnter the Employee's salary: ",
+																		"\nERROR, the data entered is not a salary. You can only enter wages without letters or special characters.\n",0, 1000000, 2)== 0)
+						{
+							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.isEmpty = 0;
+							list[index].salary = bufferEmployee.salary;
+							printf("\nThe salary was successfully modified\n\n");
+						}
+						answer = 0;
+						system ("pause");
+						system ("cls");
+						break;
+					case 4:
+						if (utn_getNumero(&bufferEmployee.sector,"\n*****Sectors*****"
+                                                                "\n1 - Human Resources"
+                                                                "\n2 - Marketing Department"
+                                                                "\n3 - Systems Department"
+                                                                "\n4 - Accounting Department"
+                                                                "\n5 - Collection Department\n"
+                                                                "\nEnter the number of the sector to which the employee belongs: ",
+                                                                "\nERROR, the data entered is not a sector. You can only enter sectors from 1 to 5 without letters or special characters.\n",0,5,2)== 0)
+						{
+							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.isEmpty = 0;
+							list[index].sector = bufferEmployee.sector;
+							printf("\nThe sector was successfully modified\n\n");
+						}
+						answer = 0;
+						system ("pause");
+						system ("cls");
+						break;
+				}
+			}
+		}while (optionMenu!=5);
 	}
-	return answer;
+		return answer;
 }
 
 /**

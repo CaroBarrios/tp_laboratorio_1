@@ -10,7 +10,7 @@ int main()
     Employee arrayEmployee[QTY_EMPLOYEE];
 	int option;
 	int auxiliaryIndex;
-	int idEmployee = 0;
+	int idEmployee;
 	int triggerRegister = 0;
 	int auxiliaryId;
 
@@ -57,7 +57,7 @@ int main()
                     {
                         auxiliaryIndex = findEmployeeById(arrayEmployee,QTY_EMPLOYEE,auxiliaryId);
                         if( auxiliaryIndex >= 0 &&
-                            modifyEmployee(arrayEmployee,QTY_EMPLOYEE,auxiliaryId) == 0)
+                            menuModifyEmployee(arrayEmployee,QTY_EMPLOYEE,auxiliaryIndex) == 0)
                             {
                                 printf("\nSuccessful modification\n\n");
                             }

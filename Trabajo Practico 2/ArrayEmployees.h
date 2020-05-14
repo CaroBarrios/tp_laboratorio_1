@@ -21,7 +21,7 @@ int addEmployee(Employee* list, int len, int index, int* id);
 int Employee_print(Employee* pElement);
 int printEmployees(Employee* list, int length);
 int findEmployeeById(Employee* list, int len, int id);
-int modifyEmployee(Employee* list, int len, int index);
+int menuModifyEmployee (Employee* list, int len, int index);
 int removeEmployee(Employee* list,int len, int id);
 int sortEmployees(Employee* list,int len, int order);
 int reportTotalSalary(Employee* list, int len, float *pTotalSalary);
