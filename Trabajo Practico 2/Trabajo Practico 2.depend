@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1589496889 source:c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\arrayemployees.c
+1589498723 source:c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -13,13 +13,23 @@
 	<ctype.h>
 	"utn.h"
 
-1589471452 c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\utn.h
+1589500487 c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\utn.h
 
-1589496306 source:c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\main.c
+1589497792 source:c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\main.c
 	<stdio.h>
 	<stdlib.h>
+	"menu.h"
 	"utn.h"
 	"ArrayEmployees.h"
 
-1589496720 c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\arrayemployees.h
+1589500504 c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\arrayemployees.h
+
+1589498700 source:c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"utn.h"
+	"ArrayEmployees.h"
+
+1589498432 c:\users\carolina.barrios\desktop\caro\utn\laboratorio 1\tp_laboratorio_1\trabajo practico 2\menu.h
 

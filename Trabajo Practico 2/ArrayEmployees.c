@@ -10,7 +10,8 @@
 * \brief To indicate that all position in the array are empty, this function put the flag (isEmpty) in TRUE in all position of the array
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
-* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+* \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*
 */
 int initEmployees(Employee* list, int len)
 {
@@ -30,7 +31,7 @@ int initEmployees(Employee* list, int len)
  * \brief Find fist empty position in the array
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
- * \return returns the index of the position empty and -1 in case of error
+ * \return Returns the index of the position empty and -1 in case of error
  *
  */
 int getEmptyIndexEmployee(Employee* list,int len)
@@ -51,12 +52,14 @@ int getEmptyIndexEmployee(Employee* list,int len)
 	return answer;
 }
 
-/** \brief add in a existing list of employees the values received as parameters in the first empty position
+/**
+* \brief Add in a existing list of employees the values received as parameters in the first empty position
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
-* \param id Position where an employee will be registered
 * \param index Position to be updated
-* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+* \param id Position where an employee will be registered
+* \return Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
 */
 int addEmployee(Employee* list, int len, int index, int* id)
 {
@@ -91,9 +94,9 @@ int addEmployee(Employee* list, int len, int index, int* id)
 }
 
 /**
- * \brief print the content of employee in a position
+ * \brief Print the content of employee in a position
  * \param pElement Pointer to the product to be printed
- * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
 int Employee_print(Employee* pElement)
@@ -109,10 +112,12 @@ int Employee_print(Employee* pElement)
 	return answer;
 }
 
-/** \brief print the content of employees array
+/**
+* \brief Print the content of employees array
 * \param list Employee* Pointer to array of employees
 * \param length int Array length
-* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+* \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*
 */
 int printEmployees(Employee* list, int length)
 {
@@ -134,11 +139,12 @@ int printEmployees(Employee* list, int length)
 	return answer;
 }
 
-/** \brief find an ID in an array and return the position it is in
+/**
+* \brief Find an ID in an array and return the position it is in
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
 * \param id Position to be found
-* \return returns the index of the position whith the sought value, o if finds the sought value and -1 in case of error
+* \return Returns the index of the position whith the sought value, o if finds the sought value and -1 in case of error
 *
 */
 int findEmployeeById(Employee* list, int len, int id)
@@ -168,7 +174,7 @@ int findEmployeeById(Employee* list, int len, int id)
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
 * \param id Position to be modify
-* \return int Return (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect] - (0) if Ok
+* \return Return (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect] - (0) if Ok
 *
 */
 int menuModifyEmployee (Employee* list, int len, int index)
@@ -197,7 +203,7 @@ int menuModifyEmployee (Employee* list, int len, int index)
 						if (utn_getString(bufferEmployee.name,NAME_LEN,"\nEnter the Employee's name: ",
 																		"\nERROR, the entered data is not a name. You can only enter names without numbers or special characters.\n",2)==0)
 						{
-							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.id = list[index].id;
 							bufferEmployee.isEmpty = 0;
 							strncpy(list[index].name, bufferEmployee.name, NAME_LEN);
 							printf("\nThe name was successfully modified\n\n");
@@ -210,7 +216,7 @@ int menuModifyEmployee (Employee* list, int len, int index)
 						if (utn_getString(bufferEmployee.lastName,LASTNAME_LEN,"\nEnter the Employee's last name: ",
 															   "\nERROR, the entered data is not a last name. You can only enter last names without numbers or special characters.\n",2)== 0)
 						{
-							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.id = list[index].id;
 							bufferEmployee.isEmpty = 0;
 							strncpy(list[index].lastName, bufferEmployee.lastName, LASTNAME_LEN);
 							printf("\nThe last name was successfully modified\n\n");
@@ -223,7 +229,7 @@ int menuModifyEmployee (Employee* list, int len, int index)
 						if (utn_getNumeroFlotante(&bufferEmployee.salary,"\nEnter the Employee's salary: ",
 																		"\nERROR, the data entered is not a salary. You can only enter wages without letters or special characters.\n",0, 1000000, 2)== 0)
 						{
-							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.id = list[index].id;
 							bufferEmployee.isEmpty = 0;
 							list[index].salary = bufferEmployee.salary;
 							printf("\nThe salary was successfully modified\n\n");
@@ -242,7 +248,7 @@ int menuModifyEmployee (Employee* list, int len, int index)
                                                                 "\nEnter the number of the sector to which the employee belongs: ",
                                                                 "\nERROR, the data entered is not a sector. You can only enter sectors from 1 to 5 without letters or special characters.\n",0,5,2)== 0)
 						{
-							bufferEmployee.id = list[index].id; // en buffer le dejo el id
+							bufferEmployee.id = list[index].id;
 							bufferEmployee.isEmpty = 0;
 							list[index].sector = bufferEmployee.sector;
 							printf("\nThe sector was successfully modified\n\n");
@@ -263,7 +269,7 @@ int menuModifyEmployee (Employee* list, int len, int index)
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
  * \param id Position to be remove
- * \return Retorna 0 (EXITO) y -1 (ERROR)
+ * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
 int removeEmployee(Employee* list,int len, int id)
@@ -283,7 +289,7 @@ int removeEmployee(Employee* list,int len, int id)
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
  * \param order int [1] indicate UP - [0] indicate DOWN
- * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
 int sortEmployees(Employee* list,int len, int order)
@@ -349,8 +355,8 @@ int sortEmployees(Employee* list,int len, int order)
 * \brief Calculate the total amount of salary for all the employees
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
-* \param float* pTotalSalary
-* \return int Return (-1) if Error [Invalid length or NULL pointer or if can't calculate the total salary] - (0) if Ok
+* \param pTotalSalary Pointer of sum of all salaries
+* \return Return (-1) if Error [Invalid length or NULL pointer or if can't calculate the total salary] - (0) if Ok
 *
 */
 int reportTotalSalary(Employee* list, int len, float *pTotalSalary)
@@ -376,9 +382,9 @@ int reportTotalSalary(Employee* list, int len, float *pTotalSalary)
 * \brief Counts the employees registered to be able to obtain an average of the salary
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
-* \param
-* \param
-* \return
+* \param totalSalary sum of all salaries
+* \param pAverageSalary Pointer of average of all salaries
+* \return Return (-1) if Error [Invalid length or NULL pointer or if can't calculate the total salary] - (0) if Ok
 *
 */
 int countEmployeesAndAverageSalary(Employee* list, int len, float totalSalary, float* pAverageSalary)
@@ -404,12 +410,12 @@ int countEmployeesAndAverageSalary(Employee* list, int len, float totalSalary, f
 }
 
 /**
-* \brief reports how many employees exceed the average salary
+* \brief Reports how many employees exceed the average salary
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
-* \param
-* \param
-* \return
+* \param auxAverage Average auxiliary
+* \param qtyEmployeesExceedAverageSalary Pointer of the number of employees exceeding the average salary
+* \return Return (-1) if Error [Invalid length or NULL pointer or if can't calculate the total salary] - (0) if Ok
 *
 */
 int employeesExceedAverageSalary(Employee* list, int len, float auxAverage, int* qtyEmployeesExceedAverageSalary)
@@ -435,7 +441,7 @@ int employeesExceedAverageSalary(Employee* list, int len, float auxAverage, int*
 * \brief Display menu for the user can choose what data want to show
 * \param list Employee* Pointer to array of employees
 * \param len int Array length
-* \return int Return (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect] - (0) if Ok
+* \return Return (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect] - (0) if Ok
 *
 */
 int menuOrderEmployees(Employee* list, int lentgh)
@@ -461,8 +467,8 @@ int menuOrderEmployees(Employee* list, int lentgh)
 				switch(optionMenu)
 				{
 					case 1:
-						if ((utn_getNumero (&optionOrder,"\nEnter 0 for ascending or 1 for descending: \n",
-                                                         "It is not a valid option. Try again.\n\n", 0, 1, 2))==0)
+						if ((utn_getNumero (&optionOrder,"\nEnter 0 for ascending or 1 for descending: ",
+                                                         "\nIt is not a valid option. Try again.\n\n", 0, 1, 2))==0)
 						{
 							sortEmployees(list,QTY_EMPLOYEE,optionOrder);
 							printEmployees(list, QTY_EMPLOYEE);
