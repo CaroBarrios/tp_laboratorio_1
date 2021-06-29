@@ -43,7 +43,7 @@ int ll_len(LinkedList* this)
 }
 
 
-/** \brief  Obtiene un nodo de la lista
+/** \brief Retorna un puntero al nodo que se encuentra en el índice especificado
  *
  * \param this LinkedList* Puntero a la lista
  * \param index int Indice del nodo a obtener
@@ -82,7 +82,7 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 }
 
 
-/** \brief Agrega y enlaza un nuevo nodo a la lista
+/** \brief Agrega y enlaza un nodo en la posición indexNode
  *
  * \param this LinkedList* Puntero a la lista
  * \param nodeIndex int Ubicacion donde se agregara el nuevo nodo
@@ -139,11 +139,12 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
  */
 int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
-    return addNode(this,nodeIndex,pElement);
+	return addNode(this,nodeIndex,pElement);
 }
 
 
-/** \brief  Agrega un elemento a la lista
+/** \brief  Agrega un elemento al final de la lista
+ *
  * \param pList LinkedList* Puntero a la lista
  * \param pElement void* Puntero al elemento a ser agregado
  * \return int Retorna  (-1) Error: si el puntero a la lista es NULL
@@ -152,10 +153,20 @@ int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
  */
 int ll_add(LinkedList* this, void* pElement)
 {
-    return addNode(this, ll_len(this), pElement);
+	//validar lo que me pasan
+	int returnAux = -1;
+
+	if(this != NULL)
+	{
+		if(addNode(this, ll_len(this), pElement) == 0)
+		{
+			returnAux = 0;
+		}
+	}
+	return returnAux;
 }
 
-/** \brief Permite realizar el test de la funcion addNode la cual es privada
+/** \brief Retorna un puntero al elemento que se encuentra en el índice especificado
  *
  * \param this LinkedList* Puntero a la lista
  * \param nodeIndex int Ubicacion del elemento a obtener
@@ -205,7 +216,6 @@ int ll_set(LinkedList* this, int index,void* pElement)
         	returnAux = 0;
     	}
     }
-
     return returnAux;
 }
 
@@ -233,9 +243,6 @@ int ll_remove(LinkedList* this,int index)
     		if(index == 0)
     		{
     			this ->pFirstNode = bufferNodo ->pNextNode;
-    			this -> size--;
-    			free(bufferNodo);
-    			returnAux = 0;
     		}
     		else
     		{
@@ -243,11 +250,11 @@ int ll_remove(LinkedList* this,int index)
     			if(anteriorNodo != NULL)
     			{
     				anteriorNodo ->pNextNode = bufferNodo ->pNextNode;
-    				this -> size--;
-    				free(bufferNodo);
-    				returnAux = 0;
     			}
     		}
+    		this -> size--;
+    		free(bufferNodo);
+    		returnAux = 0;
     	}
     }
     return returnAux;
@@ -270,8 +277,8 @@ int ll_clear(LinkedList* this)
     	while(ll_len(this))
     	{
     		ll_remove(this,0);
-    		returnAux = 0;
     	}
+    	returnAux = 0;
     }
     return returnAux;
 }
@@ -339,15 +346,14 @@ int ll_indexOf(LinkedList* this, void* pElement)
  */
 int ll_isEmpty(LinkedList* this)
 {
-    int returnAux = -1;
+	int returnAux = -1;
 
     if(this != NULL)
     {
-    	if(ll_len(this) != 0)
-    	{
-    		returnAux = 0;
-    	}
-    	else
+    	returnAux = 0;
+
+    	// suprimir else
+    	if(this ->pFirstNode == NULL)
     	{
     		returnAux = 1;
     	}
@@ -366,7 +372,17 @@ int ll_isEmpty(LinkedList* this)
  */
 int ll_push(LinkedList* this, int index, void* pElement)
 {
-    return addNode(this, index, pElement);
+	//validar lo que me pasan
+	int returnAux = -1;
+
+	if(this != NULL && index >= 0 && index <= ll_len(this))
+	{
+		if(addNode(this, index, pElement) == 0)
+		{
+			returnAux = 0;
+		}
+	}
+	return returnAux;
 }
 
 
@@ -408,13 +424,12 @@ int ll_contains(LinkedList* this, void* pElement)
 
     if(this != NULL)
     {
+    	returnAux = 0;
+
+    	//suprimir else
     	if(ll_indexOf(this, pElement) != -1)
     	{
     		returnAux = 1;
-    	}
-    	else
-    	{
-    		returnAux = 0;
     	}
     }
     return returnAux;
@@ -434,23 +449,19 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 	int returnAux = -1;
 	int len;
 	int i;
+	void* auxiliaryElement;
 
 	if(this != NULL && this2 != NULL)
 	{
 		len = ll_len(this2);
 
-		if(len == 0)
-		{
-			returnAux = 0;
-		}
+		returnAux = 1; // no setearlo varias veces y me ahorro else
 
 		for(i = 0; i < len; i++)
 		{
-			if(ll_contains(this,ll_get(this2,i)) == 1)
-			{
-				returnAux = 1;
-			}
-			else
+			auxiliaryElement = ll_get(this2,i);
+
+			if(ll_contains(this,auxiliaryElement) == 0)
 			{
 				returnAux = 0;
 				break;
@@ -473,7 +484,7 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
     LinkedList* cloneArray = NULL;
-    Node* auxiliarNode = NULL;
+    void* auxiliarElement = NULL;
     int i;
 
     if(this != NULL && from >= 0 && from <= ll_len(this) && to >= 0 && to <= ll_len(this))
@@ -484,11 +495,11 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     	{
     		for(i = from; i < to; i++)
     		{
-    			auxiliarNode = ll_get(this,i);
+    			auxiliarElement = ll_get(this,i); //auxiliarElement lo estaba igualando con otro tipo
 
-    			if(auxiliarNode != NULL)
+    			if(auxiliarElement != NULL)
     			{
-    				ll_add(cloneArray,auxiliarNode);
+    				ll_add(cloneArray,auxiliarElement);
     			}
     		}
     	}
@@ -498,7 +509,7 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 
 
 
-/** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
+/** \brief Retorna un nuevo LinkedList copia del LinkedList original
  *
  * \param pList LinkedList* Puntero a la lista
  * \return LinkedList* Retorna  (NULL) Error: si el puntero a la listas es NULL
@@ -532,6 +543,7 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     int j;
     void* pElement1;
     void* pElement2;
+    int func;
 
     if(this != NULL && pFunc != NULL && (order == 0 || order == 1))
     {
@@ -543,11 +555,14 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     		{
     			pElement1 = ll_get(this, i);
     			pElement2 = ll_get(this, j);
-    		}
-    		if((pFunc(pElement1, pElement2) > 0 && order == 0) || (pFunc(pElement1, pElement2) < 0 && order == 1))
-    		{
-    			ll_set(this, i, pElement2);
-    			ll_set(this, j, pElement1);
+
+    			func = pFunc(pElement1, pElement2); // se crea variable
+
+    			if((func > 0 && order == 1) || (func <  0 && order == 0))
+    			 {
+    				 ll_set(this, i, pElement2);
+    				 ll_set(this, j, pElement1);
+    			 }
     		}
     	}
     	returnAux = 0;
